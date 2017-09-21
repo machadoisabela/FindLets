@@ -1,7 +1,22 @@
-<ion-view view-title="Login">
-  <ion-content>
-    <label class="item">
-        <button class="facebook-sign-in button button-block" ng-click="facebookSignIn()">Login with Facebook</button>
-    </label>
-  </ion-content>
+
+<ion-view class="login" name="login" view-title="Login">
+  <div class="modal">
+    <ion-content>
+      <form ng-submit="facebookSignIn()" class="height-form">
+        <div class="div-titulo">
+            <h1>FindLets</h1> 
+        </div>
+        <div class="div-texto">
+          <h3>Estamos quase lá...</h3>
+          <p class="pb15">Para termos acesso aos melhores eventos para você, precisamos que conecte a sua conta do Facebook</p>
+          <p>Fique tranquilo, não faremos nada sem sua permissão ;)</p>
+        </div>
+        <div style="padding: 0 30px 30px 30px;">   
+            <button class="facebook-sign-in button button-positive button-block" type="submit">
+              Continuar com o Facebook
+            </button>  
+        </div>
+      </form>
+    </ion-content>
+  </div>
 </ion-view>

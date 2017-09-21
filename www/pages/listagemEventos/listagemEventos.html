@@ -1,0 +1,18 @@
+<ion-view view-title="Eventos" name="tab.listagem">
+    <ion-content>
+     
+      <div class="list card" ng-repeat="evento in eventos">
+  
+        <div class="item item-body">
+          <!-- <img class="full-image" style="width:100%;" src="{{evento.capa || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}"> -->
+          <p>{{evento.nome}}</p>
+          <p>
+            <a href="#" class="subdued">{{evento.usuariosConfirmados}}</a>
+            <!-- <a href="#" class="subdued">{{card.comentario}}</a> -->
+          </p>
+        </div>
+        
+  
+      </div>
+    </ion-content>
+  </ion-view>

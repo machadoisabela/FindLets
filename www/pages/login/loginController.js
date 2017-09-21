@@ -1,4 +1,4 @@
-app.controller('loginController', function ($scope, $state, $q, UserService, $ionicLoading) {
+app.controller('loginController', function ($scope, $state, $q, UserService, $ionicLoading, loginHttpServices) {
   
     var fbLoginSuccess = function(response) {
     if (!response.authResponse){
@@ -18,8 +18,15 @@ app.controller('loginController', function ($scope, $state, $q, UserService, $io
 				email: profileInfo.email,
         picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
       });
+      var dados ={
+        id: profileInfo.id,
+        name: profileInfo.name,
+        email: profileInfo.email,
+        birthday: profileInfo.birthday
+      }
+      loginHttpServices.salvar(dados).then(function(){});
       $ionicLoading.hide();
-      $state.go('tab.dash');
+      $state.go('tab.listagem');
     }, function(fail){
       // Fail get profile info
       console.log('profile info fail', fail);
@@ -53,6 +60,7 @@ app.controller('loginController', function ($scope, $state, $q, UserService, $io
   $scope.facebookSignIn = function() {
     facebookConnectPlugin.getLoginStatus(function(success){
       if(success.status === 'connected'){
+
         // The user is logged in and has authenticated your app, and response.authResponse supplies
         // the user's ID, a valid access token, a signed request, and the time the access token
         // and signed request each expire
@@ -73,13 +81,13 @@ app.controller('loginController', function ($scope, $state, $q, UserService, $io
 							picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
 						});
 
-						$state.go('tab.dash');
+						$state.go('tab.listagem');
 					}, function(fail){
 						// Fail get profile info
 						console.log('profile info fail', fail);
 					});
 				}else{
-					$state.go('tab.dash');
+					$state.go('tab.listagem');
 				}
       } else {
         // If (success.status === 'not_authorized') the user is logged in to Facebook,
@@ -95,8 +103,10 @@ app.controller('loginController', function ($scope, $state, $q, UserService, $io
 
 				// Ask the permissions you need. You can learn more about
 				// FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
-        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+        facebookConnectPlugin.login(['email', 'user_birthday', 'public_profile', 'user_events'], fbLoginSuccess, fbLoginError);
       }
     });
+   
+    
   };
 });

@@ -22,12 +22,12 @@ app.config(['$stateProvider','$urlRouterProvider',
                 }
                 })
 
-                .state('tab.chats', {
-                    url: '/chats',
+                .state('tab.listagem', {
+                    url: '/listagem',
                     views: {
-                    'tab-chats': {
-                        templateUrl: 'templates/tab-chats.html',
-                        controller: 'ChatsCtrl'
+                    'tab-listagem': {
+                        templateUrl: 'pages/listagemEventos/listagemEventos.html',
+                        controller: 'listagemEventosController'
                     }
                     }
                 })
@@ -51,14 +51,32 @@ app.config(['$stateProvider','$urlRouterProvider',
                 }
                 })
 
+                .state('tab.mapa', {
+                    url: '/mapa',    
+                    views: {
+                        'tab-mapa': {
+                        templateUrl: 'pages/mapa/mapa.html',
+                        controller: 'mapaController'
+                        }
+                    }
+                })
+
                 .state('login', {
                     url: '/login',               
                     templateUrl: 'pages/login/login.html',
                     controller: 'loginController' 
                 })
 
+                .state('introducao', {
+                    url: '/introducao',               
+                    templateUrl: 'pages/introducao/introducao.html',
+                    controller: 'introducaoController' 
+                })
+
+                
+
                 // if none of the above states are matched, use this as the fallback
-                $urlRouterProvider.otherwise('/tab/dash');
+                $urlRouterProvider.otherwise('/introducao');
 
         }]);
 

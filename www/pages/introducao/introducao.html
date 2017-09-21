@@ -1,0 +1,37 @@
+<div class="introducao"> 
+  <ion-slide-box class="height-slide">      
+        <ion-slide>
+          <div class="div-imagem">
+            <h1 style="margin-top: 50px;">FindLets</h1>
+          </div>
+          <div class="div-texto">
+            <h3>Encontre os melhores eventos próximos a você</h3>
+            <p>Ative seu GPS e encontre eventos que estão bombando na sua área!</p>
+          </div> 
+        </ion-slide>
+      
+        <ion-slide>
+          <div class="div-imagem">
+            <h1 style="margin-top: 50px;">FindLets</h1>
+          </div>
+          <div class="div-texto">
+            <h3 style="padding-bottom: 20px;">Rolê para todo mundo</h3>
+            <p>Balada? Filminho? Churrasco? Aqui você encontra o role ideal para você ;)</p>
+          </div>           
+        </ion-slide>
+      
+        <ion-slide>
+          <div class="div-imagem">
+            <h1 style="margin-top: 50px;">FindLets</h1>
+          </div>
+          <div class="div-texto">
+            <h3>Chama a galera pro rolê também</h3>
+            <p>Você pode confirmar presença pelo app e compartilhar com a tchurma!</p>
+          </div>             
+        </ion-slide>      
+  </ion-slide-box>
+  <div style="padding: 30px;">
+    <button class="button button-block btn-padrao" ng-if="numero != 2" ng-click="proximoSlide()">próximo</button>
+    <button class="button button-block btn-padrao" ng-if="numero == 2"  ng-click="explorar()">explorar</button>
+  </div>
+</div>
