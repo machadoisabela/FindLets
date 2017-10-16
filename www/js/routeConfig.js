@@ -10,18 +10,6 @@ app.config(['$stateProvider','$urlRouterProvider',
                 templateUrl: 'templates/tabs.html'
                 })
 
-                // Each tab has its own nav history stack:
-
-                .state('tab.dash', {
-                url: '/dash',
-                views: {
-                    'tab-dash': {
-                    templateUrl: 'templates/tab-dash.html',
-                    controller: 'DashCtrl'
-                    }
-                }
-                })
-
                 .state('tab.listagem', {
                     url: '/listagem',
                     views: {
@@ -30,25 +18,6 @@ app.config(['$stateProvider','$urlRouterProvider',
                         controller: 'listagemEventosController'
                     }
                     }
-                })
-                .state('tab.chat-detail', {
-                    url: '/chats/:chatId',
-                    views: {
-                    'tab-chats': {
-                        templateUrl: 'templates/chat-detail.html',
-                        controller: 'ChatDetailCtrl'
-                    }
-                    }
-                })
-
-                .state('tab.account', {
-                url: '/account',
-                views: {
-                    'tab-account': {
-                    templateUrl: 'templates/tab-account.html',
-                    controller: 'AccountCtrl'
-                    }
-                }
                 })
 
                 .state('tab.mapa', {
@@ -59,6 +28,22 @@ app.config(['$stateProvider','$urlRouterProvider',
                         controller: 'mapaController'
                         }
                     }
+                })
+
+                .state('tab.explorar', {
+                    url: '/explorar',    
+                    views: {
+                        'tab-explorar': {
+                        templateUrl: 'pages/explorar/explorar.html',
+                        controller: 'explorarController'
+                        }
+                    }
+                })
+
+                .state('detalhe', {
+                    url: '/detalhe/:id',                       
+                    templateUrl: 'pages/detalhe/detalhe.html',
+                    controller: 'detalheController'                                        
                 })
 
                 .state('login', {
@@ -72,8 +57,6 @@ app.config(['$stateProvider','$urlRouterProvider',
                     templateUrl: 'pages/introducao/introducao.html',
                     controller: 'introducaoController' 
                 })
-
-                
 
                 // if none of the above states are matched, use this as the fallback
                 $urlRouterProvider.otherwise('/introducao');

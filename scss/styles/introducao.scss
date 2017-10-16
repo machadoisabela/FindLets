@@ -2,13 +2,13 @@
 
     .btn-padrao{
         color: white;
-        background-color: pink;
+        background-color: $cor4;
     }
     .slider-pager .slider-pager-page{
-        color: #ddd;
+        color: $cor1;
     }
     .slider-pager .slider-pager-page.active{
-        color: pink;
+        color: $cor4;
     }
 
     .height-slide{

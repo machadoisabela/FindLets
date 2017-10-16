@@ -45,6 +45,7 @@ $map-height: 85%;
     bottom: 0px;
     left: 0px;
     right: 0px;
+    height: 100%;
 
     .map
     {
@@ -58,20 +59,97 @@ $map-height: 85%;
 {
   font-size: 1.5em;
   padding: 10px;
-  background: #F1F1F1;
-  color: #333;
+  background: $cor4;
+  color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  border: #7F7F7F solid 1px;
+  border: white solid 2px;
 
   .marker-title
   {
     margin: 0px;
+    width: 100px;
+    display: block;
+    position: relative;
+    font-weight: bold;
   }
 }
 
 .place-logo
 {
   text-align: center;
+}
+.modal-backdrop, .modal-backdrop-bg{
+  position: absolute;
+  top: 41%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 50%;
+}
+
+.eventos-lugar{
+  .card, .list-inset{
+    margin: 30px 15px 40px 15px;
+  }
+
+  .item-body{
+    p{
+      margin: 0;
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    bottom: 290px;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    bottom: 450px;
+    width: 100%;
+    color: #fff;
+  }
+
+  .icone-favoritar{
+    position: relative;
+    top: 10px;
+    right: 10px;
+    float: right;
+    font-size: 45px;
+    color: $cor2;
+  }
+
+  .imagem-card{
+    width: 100%; 
+    max-height: 180px; 
+    min-height: 180px; 
+    margin-top: -45px;
+  }
+
+  .nome-evento{
+    font-size: 15px;
+    margin: 0;
+    padding: 5px 5px;
+    color: $cor3; 
+    font-family: 'Roboto';
+  }
+
+  .lugar-evento{
+    margin: 0;
+    padding: 5px 5px; 
+    padding-bottom: 3px;
+    color: $cor1;
+  }
+
+  .data-evento{
+    margin: 0; 
+    padding-left: 5px;
+  }
 }

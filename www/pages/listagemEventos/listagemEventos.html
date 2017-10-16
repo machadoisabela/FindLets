@@ -1,15 +1,17 @@
-<ion-view view-title="Eventos" name="tab.listagem">
+<ion-view view-title="Eventos" name="tab.listagem" class="listagem-eventos">
     <ion-content>
-     
-      <div class="list card" ng-repeat="evento in eventos">
+      <h3>Eventos recomendados para você</h3>
+    
+      <div class="list card" ng-repeat="evento in eventos" style="border: none; box-shadow: none;">
   
-        <div class="item item-body">
-          <!-- <img class="full-image" style="width:100%;" src="{{evento.capa || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}"> -->
-          <p>{{evento.nome}}</p>
-          <p>
-            <a href="#" class="subdued">{{evento.usuariosConfirmados}}</a>
-            <!-- <a href="#" class="subdued">{{card.comentario}}</a> -->
-          </p>
+        <div class="item item-body" style="padding: 0;">
+          <i class="ion-heart pull-right icone-favoritar" ng-click=""></i>
+          <img class="full-image imagem-card" ng-click="detalhesEventos(evento.id)" style="object-fit: cover;" ng-src="{{evento.capa || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}">
+          <div style="border-bottom: 1px solid #cccccc">
+            <p class="nome-evento">{{evento.nome}}</p>
+          </div>
+          <p class="lugar-evento">{{evento.lugar.nome}}</p>
+          <p class="data-evento"><b>{{evento.diaInicio}}.{{evento.mesInicio}}</b> {{evento.horarioInicio}}</p>
         </div>
         
   

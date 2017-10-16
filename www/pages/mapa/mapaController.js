@@ -1,93 +1,129 @@
-app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel) {
+app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel, $ionicActionSheet, $ionicModal, $timeout, NgMap) {
 
     var user = UserService.getUser();
 
-    $scope.search = { input: '' };
-    $scope.markers_collection = []; 
     $scope.customMarkers = [];   
+    $scope.dataHoje = moment().format();
 
-    $scope.init = function(map) {
-        $scope.mymap = map;
-        $scope.$apply();
-    };
+    // $scope.init = function(map) {
+    //     $scope.mymap = map;
+    //     $scope.$apply();
+    // };
+    NgMap.getMap().then(function (map) {
+        $scope.map = map;
+    });
+    
 
     $scope.atualizaLocalizacao = function(localizacaoAtual){
         $scope.customMarkers = localizacaoAtual;
         alert("setou array");
     };
-    
-    // $scope.listaEventosPorLugares = function(ids){
-    //     var idsConcatenados = ids.join();
-    //     facebookConnectPlugin.api("/?ids="+ids+"&fields=city,name,category,location,picture,events.fields(id,type,name,start_time,end_time,cover,category)&access_token=" + user.authResponse.accessToken, null,function(response){
-    //         var retorno = response.data || {}
-    //         var array = [];
-    //         retorno.forEach(function(item) {
-    //             array.push({
-    //                 id: item.id
-    //             });
-    //         });
-    //         console.log(array);
-    //     }); 
 
-       
-    // };  
+    var eventosPorLugarSucesso = function(response){
+        var retorno = response || {}
+        var arrayLocaisComEventos = [];
+        for (var key in retorno) {
+            arrayLocaisComEventos.push(retorno[key]);
+        }  
+        var modelRetorno = [];
+        $scope.arrayEventos = angular.isArray(arrayLocaisComEventos) ? arrayLocaisComEventos.map(function(item){
+            if(item.events && item.events.data.length > 0){
+                return{
+                    id: item.id,
+                    nome: item.name,
+                    rua: item.location && item.location.street ? item.location.street : null,
+                    estado: item.location && item.location.state ? item.location.state : null,
+                    latitude: item.location && item.location.latitude ? item.location.latitude : null,
+                    longitude: item.location && item.location.longitude ? item.location.longitude : null,
+                    capa: item.cover && item.cover.source ? item.cover.source : null,
+                    eventos: angular.isArray(item.events.data) ? item.events.data.map(function(evento){
+                        return{
+                            idEvento: evento.id,
+                            nomeEvento: evento.name,
+                            capaEvento: evento.cover && evento.cover.source ? evento.cover.source : null,
+                            dataInicioEvento: evento.start_time ? moment(evento.start_time).format('L') : null,
+                            diaInicioEvento: evento.start_time ? moment(evento.start_time).format('DD') : null,
+                            mesInicioEvento: evento.start_time ? moment(evento.start_time).format('MMM') : null,
+                            horarioInicioEvento: evento.start_time ? moment(evento.start_time).format('LT') : null,
+                        };
+                    }):[]
+                   };
+            }else{
+                return{};
+            }               
+        }):[]            
+        
+        $scope.atualizaLocalizacao($scope.arrayEventos);   
+        console.log($scope.arrayEventos);
+    };
+
+    var eventosPorLugarErro = function(response){
+        console.log('Erro', response);
+    };
+    //.since("+$scope.dataHoje+")
+    $scope.eventosPorLugar = function(eventosProximos){
+        var idsConcatenados = eventosProximos.join();
+        facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=id,name,about,emails,cover.fields(id,source),picture.type(large),category,category_list.fields(name),location,events.fields(id,type,name,cover.fields(id,source),picture.type(large),description,start_time,end_time,category,attending_count,declined_count,maybe_count,noreply_count)&access_token=" + user.authResponse.accessToken, ['user_events'], eventosPorLugarSucesso, eventosPorLugarErro); 
+    };
+
+    var onSuccess = function(position) {
+        
+        alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n'+
+            'all: ' + position.coords+ '\n');
+
+            $scope.minhaLatitude = position.coords.latitude;
+            $scope.minhaLongitude = position.coords.longitude;
+
+            facebookConnectPlugin.api("/search?q=*&type=place&fields=id&center="+position.coords.latitude+","+position.coords.longitude+"&distance=1000&limit=50&access_token=" + user.authResponse.accessToken, null,function(response){
+               
+                var retorno = response.data || {};
+                $scope.idsEventosProximos = mapaModel.listaIdsFront(retorno);     
+                $scope.eventosPorLugar($scope.idsEventosProximos);                        
+                
+            }); 
+    };
+    
+    var onError = function(error) {
+        alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
+    };
 
     $scope.tryGeoLocation = function(){
         // $ionicLoading.show({
-        //   template: 'Getting current position ...'
+        //   template: '<ion-spinner icon="crescent"></ion-spinner>'
         // });
-      
-        $scope.search.input = "";
-
-        var onSuccess = function(position) {
-            
-            alert('Latitude: '          + position.coords.latitude          + '\n' +
-                  'Longitude: '         + position.coords.longitude         + '\n' +
-                  'Altitude: '          + position.coords.altitude          + '\n' +
-                  'Accuracy: '          + position.coords.accuracy          + '\n' +
-                  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-                  'Heading: '           + position.coords.heading           + '\n' +
-                  'Speed: '             + position.coords.speed             + '\n' +
-                  'Timestamp: '         + position.timestamp                + '\n'+
-                'all: ' + position.coords+ '\n');
-
-                console.log(user.authResponse.accessToken);
-
-                $scope.minhaLatitude = position.coords.latitude;
-                $scope.minhaLongitude = position.coords.longitude;
-
-                facebookConnectPlugin.api("/search?q=*&type=place&fields=id&center="+position.coords.latitude+","+position.coords.longitude+"&distance=1000&limit=1000&access_token=" + user.authResponse.accessToken, null,function(response){
-                   
-                    var retorno = response.data || {};
-                    $scope.lugaresProximos = mapaModel.listaLugaresFront(retorno);
-                    $scope.idsEventosProximos = mapaModel.listaIdsFront(retorno);                                  
-                    
-                }); 
-        };
-
-        $scope.eventosPorLugar = function(){
-            var idsConcatenados = $scope.idsEventosProximos.join();
-            facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=city,name,category,location,picture,events.fields(id,type,name,start_time,end_time,cover,category)&access_token=" + user.authResponse.accessToken, null,function(response){
-                var retorno = response.data || {}
-                var array = [];
-                retorno.forEach(function(item) {
-                    array.push({
-                        id: item.id
-                    });
-                });
-                $scope.atualizaLocalizacao($scope.eventosProximos);   
-                console.log(array);
-            },function(){
-                alert("erro");
-            }); 
-        };
-    
-        var onError = function(error) {
-            alert('code: '    + error.code    + '\n' +
-                  'message: ' + error.message + '\n');
-        };
-    
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    };
+    $scope.tryGeoLocation();
+    $ionicModal.fromTemplateUrl('detalhes-eventos.html', {
+        scope: $scope,
+        animation: 'slide-in-up',
+        backdropClickToClose: true
+     }).then(function(modal) {
+        $scope.modal = modal;
+     });
+      
+     $scope.openModal = function() {
+        $timeout(function(){
+            $scope.modal.show(); 
+        },0)
+     };
+      
+     $scope.closeModal = function() {
+        $scope.modal.hide();
+     };
+
+    $scope.mostrarDetalhes = function(event, item){
+        console.log(item);
+        $scope.eventosLocalEscolhido = item.os;
+       $scope.openModal();
     };
     
 });

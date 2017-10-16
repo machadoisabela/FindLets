@@ -1,4 +1,20 @@
-.card-title {
+.listagem-eventos{
+
+  h3{
+    margin: 27px 42px 0 15px;
+  }
+
+  .card, .list-inset{
+    margin: 30px 15px 40px 15px;
+  }
+
+  .item-body{
+    p{
+      margin: 0;
+    }
+  }
+
+  .card-title {
     position: absolute;
     bottom: 290px;
     font-size: 2.0em;
@@ -14,3 +30,41 @@
     width: 100%;
     color: #fff;
   }
+
+  .icone-favoritar{
+    position: relative;
+    top: 10px;
+    right: 10px;
+    float: right;
+    font-size: 45px;
+    color: $cor2;
+  }
+
+  .imagem-card{
+    width: 100%; 
+    max-height: 180px; 
+    min-height: 180px; 
+    margin-top: -45px;
+  }
+
+  .nome-evento{
+    font-size: 15px;
+    margin: 0;
+    padding: 5px 5px;
+    color: $cor3; 
+    font-family: 'Roboto';
+  }
+
+  .lugar-evento{
+    margin: 0;
+    padding: 5px 5px; 
+    padding-bottom: 3px;
+    color: $cor1;
+  }
+
+  .data-evento{
+    margin: 0; 
+    padding-left: 5px;
+  }
+
+}

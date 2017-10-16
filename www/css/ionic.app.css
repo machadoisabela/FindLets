@@ -9815,7 +9815,16 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-.card-title {
+.listagem-eventos h3 {
+  margin: 27px 42px 0 15px; }
+
+.listagem-eventos .card, .listagem-eventos .list-inset {
+  margin: 30px 15px 40px 15px; }
+
+.listagem-eventos .item-body p {
+  margin: 0; }
+
+.listagem-eventos .card-title {
   position: absolute;
   bottom: 290px;
   font-size: 2.0em;
@@ -9823,12 +9832,43 @@ a.button {
   font-weight: bold;
   color: #fff; }
 
-.card-subtitle {
+.listagem-eventos .card-subtitle {
   font-size: 1.0em;
   position: absolute;
   bottom: 450px;
   width: 100%;
   color: #fff; }
+
+.listagem-eventos .icone-favoritar {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  float: right;
+  font-size: 45px;
+  color: #CCCCCC; }
+
+.listagem-eventos .imagem-card {
+  width: 100%;
+  max-height: 180px;
+  min-height: 180px;
+  margin-top: -45px; }
+
+.listagem-eventos .nome-evento {
+  font-size: 15px;
+  margin: 0;
+  padding: 5px 5px;
+  color: #353030;
+  font-family: 'Roboto'; }
+
+.listagem-eventos .lugar-evento {
+  margin: 0;
+  padding: 5px 5px;
+  padding-bottom: 3px;
+  color: #8E8E8E; }
+
+.listagem-eventos .data-evento {
+  margin: 0;
+  padding-left: 5px; }
 
 .login .div-texto {
   padding: 30px;
@@ -9836,8 +9876,7 @@ a.button {
 
 .login .div-titulo {
   text-align: center;
-  padding: 30px;
-  margin-top: 30px; }
+  padding: 60px 30px; }
 
 .login .height-form {
   height: 100%; }
@@ -9853,13 +9892,13 @@ a.button {
 
 .introducao .btn-padrao {
   color: white;
-  background-color: pink; }
+  background-color: #FF0098; }
 
 .introducao .slider-pager .slider-pager-page {
-  color: #ddd; }
+  color: #8E8E8E; }
 
 .introducao .slider-pager .slider-pager-page.active {
-  color: pink; }
+  color: #FF0098; }
 
 .introducao .height-slide {
   height: 440px; }
@@ -9897,7 +9936,8 @@ a.button {
     top: 0px;
     bottom: 0px;
     left: 0px;
-    right: 0px; }
+    right: 0px;
+    height: 100%; }
     .map-row .map-container .map {
       height: 100%;
       width: 100%; }
@@ -9905,14 +9945,84 @@ a.button {
 .custom-marker {
   font-size: 1.5em;
   padding: 10px;
-  background: #F1F1F1;
-  color: #333;
+  background: #FF0098;
+  color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  border: #7F7F7F solid 1px; }
+  border: white solid 2px; }
   .custom-marker .marker-title {
-    margin: 0px; }
+    margin: 0px;
+    width: 100px;
+    display: block;
+    position: relative;
+    font-weight: bold; }
 
 .place-logo {
   text-align: center; }
+
+.modal-backdrop, .modal-backdrop-bg {
+  position: absolute;
+  top: 41%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 50%; }
+
+.eventos-lugar .card, .eventos-lugar .list-inset {
+  margin: 30px 15px 40px 15px; }
+
+.eventos-lugar .item-body p {
+  margin: 0; }
+
+.eventos-lugar .card-title {
+  position: absolute;
+  bottom: 290px;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff; }
+
+.eventos-lugar .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  bottom: 450px;
+  width: 100%;
+  color: #fff; }
+
+.eventos-lugar .icone-favoritar {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  float: right;
+  font-size: 45px;
+  color: #CCCCCC; }
+
+.eventos-lugar .imagem-card {
+  width: 100%;
+  max-height: 180px;
+  min-height: 180px;
+  margin-top: -45px; }
+
+.eventos-lugar .nome-evento {
+  font-size: 15px;
+  margin: 0;
+  padding: 5px 5px;
+  color: #353030;
+  font-family: 'Roboto'; }
+
+.eventos-lugar .lugar-evento {
+  margin: 0;
+  padding: 5px 5px;
+  padding-bottom: 3px;
+  color: #8E8E8E; }
+
+.eventos-lugar .data-evento {
+  margin: 0;
+  padding-left: 5px; }
+
+.tab-item-active {
+  color: #FF0098; }
+
+.tabs-striped .tab-item.tab-item-active {
+  border-color: unset; }

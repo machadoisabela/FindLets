@@ -9,7 +9,10 @@ app.factory('listagemModel', function() {
                     nome: item.name || null,
                     descricao:item.description || null,
                     capa: item.cover ? item.cover.source : null,
-                    inicio: item.start_time || null,
+                    dataInicio: item.start_time ? moment(item.start_time).format('L') : null,
+                    diaInicio: item.start_time ? moment(item.start_time).format('DD') : null,
+                    mesInicio: item.start_time ? moment(item.start_time).format('MMM') : null,
+                    horarioInicio: item.start_time ? moment(item.start_time).format('LT') : null,
                     usuariosConfirmados: item.attending_count || null,
                     lugar: item.place ? {
                         id: item.place.id,

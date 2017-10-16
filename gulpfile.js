@@ -4,7 +4,11 @@ var cleanCss = require('gulp-clean-css');
 var rename = require('gulp-rename');
 
 var paths = {
-  sass: ['./scss/**/*.scss']
+  sass: ['./scss/**/*.scss'],
+  appDependencesJs: [
+    './node_modules/moment/moment.js',
+    './node_modules/moment/locale/pt-br.js'
+  ]
 };
 
 gulp.task('default', ['sass']);

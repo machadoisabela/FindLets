@@ -1,17 +1,25 @@
-<div class="map-container" data-tap-disabled="true">
-    <ng-map class="map" zoom="14" center="[{{minhaLatitude}}, {{minhaLongitude}}]" zoom-control="true" scale-control="false" map-type-control="false" street-view-control="false" map-initialized="init(map)">
-        <marker no-watcher="false" ng-repeat="cm in customMarkers" position="[{{cm.lat}}, {{cm.lng}}]" class="{{cm.class}}">
-          <h3 class="marker-title">{{cm.text}}</h3>
-        </marker>
+
+<script id="detalhes-eventos.html" type="text/ng-template">
+  <ion-modal-view class="eventos-lugar" style="overflow-y: auto; overflow-x: hidden; max-height: 50vh;">
+    <div class="list card" ng-repeat="itemEvento in eventosLocalEscolhido" style="border: none; box-shadow: none;">      
+        <div class="item item-body" style="padding: 0;">
+          <i class="ion-heart pull-right icone-favoritar" ng-click=""></i>
+          <img class="full-image imagem-card" style="object-fit: cover;" ng-src="{{itemEvento.capaEvento || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}">
+          <div style="border-bottom: 1px solid #cccccc">
+            <p class="nome-evento">{{itemEvento.nomeEvento}}</p>
+          </div>
+          <p class="data-evento"><b>{{itemEvento.diaInicioEvento}}.{{itemEvento.mesInicioEvento}}</b> {{itemEvento.horarioInicioEvento}}</p>
+        </div>
+    </div>
+  </ion-modal-view>
+</script>
+
+
+<div class="map-container" data-tap-disabled="true" style="height: 100%;">
+    <ng-map class="map" style="height: 100%;" zoom="14" center="[{{minhaLatitude}}, {{minhaLongitude}}]" zoom-control="false" scale-control="false" map-type-control="false" street-view-control="false">
+        <custom-marker no-watcher="false" ng-repeat="cm in customMarkers" on-click="mostrarDetalhes({{cm}})" position="[{{cm.latitude}}, {{cm.longitude}}]" class="{{cm.class}}">
+          <div class="marker-title" style="font-size: 10px;">{{cm.nome}}</div>
+        </custom-marker>
       </ng-map>
 </div>
-<div class="row geolocation-row">
-    <div class="col col-center">
-      <button class="geolocation-button button button-block button-positive" ng-click="tryGeoLocation()">
-        Try the Geo Location feature!
-      </button>
-      <button class="geolocation-button button button-block button-positive" ng-click="eventosPorLugar()">
-        Eventos por lugar
-      </button>
-    </div>
-  </div>
+
