@@ -1,4 +1,4 @@
-app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel, $ionicActionSheet, $ionicModal, $timeout, NgMap) {
+app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel, $ionicActionSheet, $ionicModal, $timeout, NgMap, $ionicBackdrop) {
 
     var user = UserService.getUser();
 
@@ -16,6 +16,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
 
     $scope.atualizaLocalizacao = function(localizacaoAtual){
         $scope.customMarkers = localizacaoAtual;
+        $scope.$apply();
         alert("setou array");
     };
 
@@ -60,10 +61,10 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
     var eventosPorLugarErro = function(response){
         console.log('Erro', response);
     };
-    //.since("+$scope.dataHoje+")
+   
     $scope.eventosPorLugar = function(eventosProximos){
         var idsConcatenados = eventosProximos.join();
-        facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=id,name,about,emails,cover.fields(id,source),picture.type(large),category,category_list.fields(name),location,events.fields(id,type,name,cover.fields(id,source),picture.type(large),description,start_time,end_time,category,attending_count,declined_count,maybe_count,noreply_count)&access_token=" + user.authResponse.accessToken, ['user_events'], eventosPorLugarSucesso, eventosPorLugarErro); 
+        facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=id,name,about,emails,cover.fields(id,source),picture.type(large),category,category_list.fields(name),location,events.fields(id,type,name,cover.fields(id,source),picture.type(large),description,start_time,end_time,category,attending_count,declined_count,maybe_count,noreply_count).since("+$scope.dataHoje+")&access_token=" + user.authResponse.accessToken, ['user_events'], eventosPorLugarSucesso, eventosPorLugarErro); 
     };
 
     var onSuccess = function(position) {
@@ -122,7 +123,8 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
 
     $scope.mostrarDetalhes = function(event, item){
         console.log(item);
-        $scope.eventosLocalEscolhido = item.os;
+        $scope.eventosLocalEscolhido = item.os.reverse();
+        $scope.localEvento = item.nome;
        $scope.openModal();
     };
     

@@ -9815,6 +9815,26 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.modal-backdrop-bg {
+  transition: opacity 300ms ease-in-out;
+  -webkit-transition: opacity 300ms ease-in-out;
+  background-color: #000;
+  opacity: 0; }
+
+.active .modal-backdrop-bg {
+  opacity: 0.5; }
+
+.loading-container .loading {
+  background-color: transparent; }
+
+.spinner {
+  stroke: #FF0098;
+  fill: #FF0098; }
+
+.spinner svg {
+  width: 50px;
+  height: 50px; }
+
 .listagem-eventos h3 {
   margin: 27px 42px 0 15px; }
 
@@ -9950,7 +9970,8 @@ a.button {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  border: white solid 2px; }
+  border: white solid 2px;
+  text-align: center; }
   .custom-marker .marker-title {
     margin: 0px;
     width: 100px;
@@ -9963,7 +9984,7 @@ a.button {
 
 .modal-backdrop, .modal-backdrop-bg {
   position: absolute;
-  top: 41%;
+  top: 45%;
   left: 0;
   z-index: 10;
   width: 100%;
@@ -10026,3 +10047,11 @@ a.button {
 
 .tabs-striped .tab-item.tab-item-active {
   border-color: unset; }
+
+.detalhe .icone-favoritar {
+  position: relative;
+  top: 15px;
+  right: 15px;
+  float: right;
+  font-size: 45px;
+  color: #CCCCCC; }

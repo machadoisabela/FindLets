@@ -1,6 +1,14 @@
 <ion-view >
     <ion-content>
-      <h3>Detalhe</h3>
+      <div class="detalhe">
+        <i class="ion-heart pull-right icone-favoritar" ng-click=""></i>
+        <img ng-src="{{detalheEvento.capa}}" style="width: 100%; object-fit: cover; margin-top: -45px;
+        max-height: 200px;">
+      </div>
+      <div>
+          <h4 style="padding: 3px 10px; margin-bottom: 4px;">{{detalheEvento.nome}}</h4>
+          <p style="padding: 0 10px;" class="data-evento"><b>{{detalheEvento.dataInicio}}</b> {{detalheEvento.horarioInicio}}</p>
+      </div>
     
       
     </ion-content>

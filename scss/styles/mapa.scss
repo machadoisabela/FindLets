@@ -65,6 +65,7 @@ $map-height: 85%;
   -moz-border-radius: 4px;
   border-radius: 4px;
   border: white solid 2px;
+  text-align: center;
 
   .marker-title
   {
@@ -82,7 +83,7 @@ $map-height: 85%;
 }
 .modal-backdrop, .modal-backdrop-bg{
   position: absolute;
-  top: 41%;
+  top: 45%;
   left: 0;
   z-index: 10;
   width: 100%;

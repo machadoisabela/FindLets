@@ -1,16 +1,19 @@
 
 <script id="detalhes-eventos.html" type="text/ng-template">
-  <ion-modal-view class="eventos-lugar" style="overflow-y: auto; overflow-x: hidden; max-height: 50vh;">
-    <div class="list card" ng-repeat="itemEvento in eventosLocalEscolhido" style="border: none; box-shadow: none;">      
+  <ion-modal-view class="eventos-lugar" style="overflow-y: auto; overflow-x: hidden; max-height: 60vh;">
+    <ion-scroll zooming="true" direction="y">
+      <div class="list card" ng-repeat="itemEvento in eventosLocalEscolhido" style="border: none; box-shadow: none;">      
         <div class="item item-body" style="padding: 0;">
           <i class="ion-heart pull-right icone-favoritar" ng-click=""></i>
           <img class="full-image imagem-card" style="object-fit: cover;" ng-src="{{itemEvento.capaEvento || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}">
           <div style="border-bottom: 1px solid #cccccc">
             <p class="nome-evento">{{itemEvento.nomeEvento}}</p>
           </div>
+          <p class="lugar-evento">{{localEvento}}</p>
           <p class="data-evento"><b>{{itemEvento.diaInicioEvento}}.{{itemEvento.mesInicioEvento}}</b> {{itemEvento.horarioInicioEvento}}</p>
         </div>
-    </div>
+      </div>
+    </ion-scroll>    
   </ion-modal-view>
 </script>
 

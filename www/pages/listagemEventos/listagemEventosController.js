@@ -1,14 +1,17 @@
-app.controller('listagemEventosController', function ($scope, Chats, UserService, listagemModel, $location) {
+app.controller('listagemEventosController', function ($scope, UserService, listagemModel, $location, $ionicLoading) {
 
   
-  $scope.eventos = [];
+  $scope.listaEventos = [];
+  $scope.dataEventos = moment().format("MM");
 
   var user = UserService.getUser();
 
   var listaEventosSucesso = function(response){
     var retorno = response.data || {};
     $scope.paginacao = response.paging;
-    $scope.eventos = listagemModel.listaEventosFront(retorno);
+    $scope.listaEventos = listagemModel.listaEventosFront(retorno);
+    $scope.$apply();
+    $ionicLoading.hide();
     console.log(response);
   };
 
@@ -22,6 +25,10 @@ app.controller('listagemEventosController', function ($scope, Chats, UserService
 
   $scope.detalhesEventos = function(id){
     $location.path('/detalhe/'+id);
+  };
+
+  $scope.selecionaFavorito = function(item){
+    return $scope.favoritosUsuario.indexOf(item.id == -1)
   };
   
   // $scope.proximaPagina = function(){
@@ -53,10 +60,15 @@ app.controller('listagemEventosController', function ($scope, Chats, UserService
 //       });
 //   };
 
-  $scope.$on('$ionicView.enter', function () {
-    $scope.listaEventos();
-    //$scope.apiCall("https://graph.facebook.com/v2.10/search?q=SãoPaulo&type=event&fields=id,name,cover,description,attending_count,place,start_time&limit=500&access_token=" + user.authResponse.accessToken);
+  $scope.listaEventos();  
+  $ionicLoading.show({
+    template: '<ion-spinner icon="crescent"></ion-spinner>'
   });
+
+            
+
+    //$scope.apiCall("https://graph.facebook.com/v2.10/search?q=SãoPaulo&type=event&fields=id,name,cover,description,attending_count,place,start_time&limit=500&access_token=" + user.authResponse.accessToken);
+
 
 
   

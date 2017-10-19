@@ -1,4 +1,4 @@
-app.controller('loginController', function ($scope, $state, $q, UserService, $ionicLoading, loginHttpServices, loginModel) {
+app.controller('loginController', function ($scope, $state, $q, UserService, $ionicLoading, loginHttpServices, loginModel, $location) {
   
     var fbLoginSuccess = function(response) {
       if (!response.authResponse){
@@ -109,7 +109,8 @@ app.controller('loginController', function ($scope, $state, $q, UserService, $io
 							picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
 						});
 
-						$state.go('tab.listagem');
+            //$state.go('tab.listagem');
+            $location.path('/listagem');
 					}, function(fail){
 						// Fail get profile info
 						console.log('profile info fail', fail);
