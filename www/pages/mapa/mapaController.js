@@ -1,14 +1,9 @@
-app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel, $ionicActionSheet, $ionicModal, $timeout, NgMap, $ionicBackdrop) {
+app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeolocation, UserService, mapaModel, $ionicActionSheet, $ionicModal, $timeout, NgMap, $ionicBackdrop, $location) {
 
     var user = UserService.getUser();
-
     $scope.customMarkers = [];   
     $scope.dataHoje = moment().format();
 
-    // $scope.init = function(map) {
-    //     $scope.mymap = map;
-    //     $scope.$apply();
-    // };
     NgMap.getMap().then(function (map) {
         $scope.map = map;
     });
@@ -18,6 +13,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
         $scope.customMarkers = localizacaoAtual;
         $scope.$apply();
         alert("setou array");
+        $ionicLoading.hide();
     };
 
     var eventosPorLugarSucesso = function(response){
@@ -64,7 +60,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
    
     $scope.eventosPorLugar = function(eventosProximos){
         var idsConcatenados = eventosProximos.join();
-        facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=id,name,about,emails,cover.fields(id,source),picture.type(large),category,category_list.fields(name),location,events.fields(id,type,name,cover.fields(id,source),picture.type(large),description,start_time,end_time,category,attending_count,declined_count,maybe_count,noreply_count).since("+$scope.dataHoje+")&access_token=" + user.authResponse.accessToken, ['user_events'], eventosPorLugarSucesso, eventosPorLugarErro); 
+        facebookConnectPlugin.api("/?ids="+idsConcatenados+"&fields=id,name,about,emails,cover.fields(id,source),picture.type(large),category,category_list.fields(name),location,events.fields(id,type,name,cover.fields(id,source),picture.type(large),description,start_time,end_time,category,attending_count,declined_count,maybe_count,noreply_count).since("+$scope.dataHoje+")&access_token=" + user.authResponse.accessToken, ['user_events'], eventosPorLugarSucesso, eventosPorLugarErro);  
     };
 
     var onSuccess = function(position) {
@@ -82,7 +78,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
             $scope.minhaLatitude = position.coords.latitude;
             $scope.minhaLongitude = position.coords.longitude;
 
-            facebookConnectPlugin.api("/search?q=*&type=place&fields=id&center="+position.coords.latitude+","+position.coords.longitude+"&distance=1000&limit=50&access_token=" + user.authResponse.accessToken, null,function(response){
+            facebookConnectPlugin.api("/search?q=*&type=place&fields=id&center="+position.coords.latitude+","+position.coords.longitude+"&distance=10&limit=50&access_token=" + user.authResponse.accessToken, null,function(response){
                
                 var retorno = response.data || {};
                 $scope.idsEventosProximos = mapaModel.listaIdsFront(retorno);     
@@ -97,12 +93,16 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
     };
 
     $scope.tryGeoLocation = function(){
-        // $ionicLoading.show({
-        //   template: '<ion-spinner icon="crescent"></ion-spinner>'
-        // });
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
     };
     $scope.tryGeoLocation();
+
+    
+    $scope.detalhesEventos = function(id){
+        $scope.modal.hide();
+        $location.path('/detalhe/'+id);
+    }; 
+
     $ionicModal.fromTemplateUrl('detalhes-eventos.html', {
         scope: $scope,
         animation: 'slide-in-up',
@@ -113,6 +113,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
       
      $scope.openModal = function() {
         $timeout(function(){
+            $ionicLoading.hide();
             $scope.modal.show(); 
         },0)
      };
@@ -127,5 +128,7 @@ app.controller('mapaController', function ($scope, $ionicLoading, $cordovaGeoloc
         $scope.localEvento = item.nome;
        $scope.openModal();
     };
-    
+    $ionicLoading.show({
+        template: '<ion-spinner icon="crescent"></ion-spinner>'
+    });
 });

@@ -67,4 +67,15 @@
     padding-left: 5px;
   }
 
+  .item{
+    border: none;
+  }
+  .item-select select{
+    color: $cor4;
+  }
+
+  .favorito{
+    color: $cor4;
+  }
+
 }

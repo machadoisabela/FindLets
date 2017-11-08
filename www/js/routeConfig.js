@@ -40,10 +40,26 @@ app.config(['$stateProvider','$urlRouterProvider',
                     }
                 })
 
+                .state('tab.perfil', {
+                    url: '/perfil',    
+                    views: {
+                        'tab-perfil': {
+                        templateUrl: 'pages/perfil/perfil.html',
+                        controller: 'perfilController'
+                        }
+                    }
+                })
+
                 .state('detalhe', {
                     url: '/detalhe/:id',                       
                     templateUrl: 'pages/detalhe/detalhe.html',
                     controller: 'detalheController'                                        
+                })
+
+                .state('configuracoes', {
+                    url: '/configuracoes',               
+                    templateUrl: 'pages/configuracoes/configuracoes.html',
+                    controller: 'configuracoesController' 
                 })
 
                 .state('login', {

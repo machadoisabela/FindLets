@@ -1,0 +1,114 @@
+.perfil{
+
+    .div-perfil{
+        width: 100%;
+        border: 1px solid $cor2;
+        padding: 15px;
+        height: 100px;
+    }
+
+    .div-nome{
+        display: inline-table;
+    }
+
+    .configuracoes{
+        
+        a{
+            text-decoration: none;
+            color: $cor4;
+        }
+    }
+
+    .img-perfil{
+        border-radius: 50%;
+        height: 70px;
+        width: 70px;
+        float: right;
+    }
+
+    .nome-perfil{
+        position: relative;
+        top: 6px;
+    }
+
+    .texto{
+        padding: 60px;
+        color: #ccc;
+        text-align: center;
+        font-size: 18px;
+    }
+
+      .card, .list-inset{
+        margin: 30px 15px 40px 15px;
+      }
+    
+      .item-body{
+        p{
+          margin: 0;
+        }
+      }
+    
+      .card-title {
+        position: absolute;
+        bottom: 290px;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+      }
+    
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        bottom: 450px;
+        width: 100%;
+        color: #fff;
+      }
+    
+      .icone-favoritar{
+        position: relative;
+        top: 10px;
+        right: 10px;
+        float: right;
+        font-size: 45px;
+        color: $cor2;
+      }
+    
+      .imagem-card{
+        width: 100%; 
+        max-height: 180px; 
+        min-height: 180px; 
+        margin-top: -45px;
+      }
+    
+      .nome-evento{
+        font-size: 15px;
+        margin: 0;
+        padding: 5px 5px;
+        color: $cor3; 
+        font-family: 'Roboto';
+      }
+    
+      .lugar-evento{
+        margin: 0;
+        padding: 5px 5px; 
+        padding-bottom: 3px;
+        color: $cor1;
+      }
+    
+      .data-evento{
+        margin: 0; 
+        padding-left: 5px;
+      }
+    
+      .item{
+        border: none;
+      }
+      .item-select select{
+        color: $cor4;
+      }
+    
+      .favorito{
+        color: $cor4;
+      }
+}

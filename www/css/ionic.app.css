@@ -9890,6 +9890,15 @@ a.button {
   margin: 0;
   padding-left: 5px; }
 
+.listagem-eventos .item {
+  border: none; }
+
+.listagem-eventos .item-select select {
+  color: #FF0098; }
+
+.listagem-eventos .favorito {
+  color: #FF0098; }
+
 .login .div-texto {
   padding: 30px;
   text-align: center; }
@@ -9988,10 +9997,13 @@ a.button {
   left: 0;
   z-index: 10;
   width: 100%;
-  height: 50%; }
+  height: 55%; }
 
 .eventos-lugar .card, .eventos-lugar .list-inset {
-  margin: 30px 15px 40px 15px; }
+  margin: 0px 15px 0px 15px; }
+
+.eventos-lugar .list:last-child.card {
+  margin-bottom: 0; }
 
 .eventos-lugar .item-body p {
   margin: 0; }
@@ -10055,3 +10067,170 @@ a.button {
   float: right;
   font-size: 45px;
   color: #CCCCCC; }
+
+.detalhe .lugar-detalhe {
+  padding-top: 10px;
+  margin-bottom: 2px; }
+
+.detalhe .localizacao-detalhe {
+  font-weight: bold;
+  color: #FF0098; }
+
+.detalhe .icone-voltar {
+  color: white;
+  position: relative;
+  font-size: 40px;
+  top: 14px;
+  left: 15px; }
+
+.detalhe .button-light {
+  border: 1px solid #ccc;
+  border-radius: unset; }
+
+.explorar .barra-pesquisa {
+  background-image: none;
+  position: relative;
+  margin-bottom: 15px; }
+
+.explorar .icone-pesquisa {
+  font-size: 30px;
+  color: #ccc;
+  margin-right: 15px;
+  margin-left: 5px; }
+
+.explorar .nome-categoria {
+  color: white;
+  font-size: 15px; }
+
+.explorar .categoria-left {
+  width: 50%;
+  margin: 7px 7px 7px 0;
+  height: 148px;
+  text-align: center; }
+  .explorar .categoria-left img {
+    margin-top: 35px; }
+
+.explorar .entretenimento {
+  background-image: url("../img/1.jpg");
+  background-size: cover; }
+
+.explorar .fitness {
+  background-image: url("../img/3.jpg");
+  background-size: cover; }
+
+.explorar .saude {
+  background-image: url("../img/5.jpg");
+  background-size: cover; }
+
+.explorar .categoria-right {
+  width: 50%;
+  margin: 7px 1px 7px 7px;
+  height: 148px;
+  text-align: center; }
+  .explorar .categoria-right img {
+    margin-top: 35px; }
+
+.explorar .educacao {
+  background-image: url("../img/2.jpg");
+  background-size: cover; }
+
+.explorar .gastronomia {
+  background-image: url("../img/4.jpg");
+  background-size: cover; }
+
+.explorar .compras {
+  background-image: url("../img/6.jpg");
+  background-size: cover; }
+
+.modal-explorar .modal-backdrop, .modal-explorar .modal-backdrop-bg {
+  top: 0; }
+
+.perfil .div-perfil {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 15px;
+  height: 100px; }
+
+.perfil .div-nome {
+  display: inline-table; }
+
+.perfil .configuracoes a {
+  text-decoration: none;
+  color: #FF0098; }
+
+.perfil .img-perfil {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  float: right; }
+
+.perfil .nome-perfil {
+  position: relative;
+  top: 6px; }
+
+.perfil .texto {
+  padding: 60px;
+  color: #ccc;
+  text-align: center;
+  font-size: 18px; }
+
+.perfil .card, .perfil .list-inset {
+  margin: 30px 15px 40px 15px; }
+
+.perfil .item-body p {
+  margin: 0; }
+
+.perfil .card-title {
+  position: absolute;
+  bottom: 290px;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff; }
+
+.perfil .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  bottom: 450px;
+  width: 100%;
+  color: #fff; }
+
+.perfil .icone-favoritar {
+  position: relative;
+  top: 10px;
+  right: 10px;
+  float: right;
+  font-size: 45px;
+  color: #CCCCCC; }
+
+.perfil .imagem-card {
+  width: 100%;
+  max-height: 180px;
+  min-height: 180px;
+  margin-top: -45px; }
+
+.perfil .nome-evento {
+  font-size: 15px;
+  margin: 0;
+  padding: 5px 5px;
+  color: #353030;
+  font-family: 'Roboto'; }
+
+.perfil .lugar-evento {
+  margin: 0;
+  padding: 5px 5px;
+  padding-bottom: 3px;
+  color: #8E8E8E; }
+
+.perfil .data-evento {
+  margin: 0;
+  padding-left: 5px; }
+
+.perfil .item {
+  border: none; }
+
+.perfil .item-select select {
+  color: #FF0098; }
+
+.perfil .favorito {
+  color: #FF0098; }

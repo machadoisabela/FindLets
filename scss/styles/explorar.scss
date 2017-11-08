@@ -1,0 +1,68 @@
+.explorar{
+
+    .barra-pesquisa{
+        background-image: none;
+        position: relative;
+        margin-bottom: 15px;
+    }
+    .icone-pesquisa{
+        font-size: 30px;
+        color: #ccc;
+        margin-right: 15px;
+        margin-left: 5px;
+    }
+
+    .nome-categoria{
+        color: white;
+        font-size: 15px;
+    }
+    .categoria-left{
+        width: 50%;
+        margin: 7px 7px 7px 0;
+        height: 148px;
+        text-align: center;    
+        img{
+            margin-top: 35px;
+        }   
+    }
+    .entretenimento{
+        background-image: url('../img/1.jpg'); 
+        background-size: cover;
+    }
+    .fitness{
+        background-image: url('../img/3.jpg'); 
+        background-size: cover;
+    }
+    .saude{
+        background-image: url('../img/5.jpg'); 
+        background-size: cover;
+    }
+
+    .categoria-right{
+        width: 50%;
+        margin: 7px 1px 7px 7px;
+        height: 148px;
+        text-align: center;
+        img{
+            margin-top: 35px;
+        }   
+    }
+
+    .educacao{
+        background-image: url('../img/2.jpg'); 
+        background-size: cover;
+    }
+    .gastronomia{
+        background-image: url('../img/4.jpg'); 
+        background-size: cover;
+    }
+    .compras{
+        background-image: url('../img/6.jpg'); 
+        background-size: cover;
+    }
+}
+.modal-explorar{
+    .modal-backdrop, .modal-backdrop-bg{
+        top: 0;
+    }
+}

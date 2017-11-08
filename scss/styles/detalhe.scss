@@ -6,5 +6,30 @@
         float: right;
         font-size: 45px;
         color: $cor2;
-      }
+    }
+
+    .lugar-detalhe{
+       
+        padding-top: 10px;
+        margin-bottom: 2px;
+    }
+
+    .localizacao-detalhe{
+        
+        font-weight: bold;
+        color: $cor4;
+    }
+
+    .icone-voltar{
+        color: white;
+        position: relative;
+        font-size: 40px;
+        top: 14px;
+        left: 15px;
+    }
+
+    .button-light{
+        border: 1px solid #ccc;
+        border-radius: unset;
+    }
 }

@@ -1,8 +1,62 @@
-<ion-view>
-    <ion-content>
-        <div>
-            <div class="bar bar-header item-input-inset">
-                <ion-search placeholder="Search a user" filter="search"></ion-search>
+<script id="explorar-eventos.html" type="text/ng-template">
+    <ion-modal-view class="eventos-lugar modal-explorar">      
+        <ion-header-bar>
+              <button class="button icon ion-chevron-left" ng-click="closeModal()"></button>   
+          </ion-header-bar>
+          <ion-content>
+            <div class="list card" ng-repeat="evento in eventosExplorados" style="border: none; box-shadow: none;">      
+              <div class="item item-body" style="padding: 0;">
+                <i class="ion-heart pull-right icone-favoritar" ng-click="detalhesEventos(evento.id)"></i>
+                <img class="full-image imagem-card" style="object-fit: cover;" ng-src="{{evento.capa || 'http://www.smartkids.com.br/content/articles/images/768/thumb/festa-junina.png'}}">
+                <div style="border-bottom: 1px solid #cccccc">
+                    <p class="nome-evento">{{evento.nome}}</p>
+                </div>
+                <p class="lugar-evento">{{evento.lugar.nome}}</p>
+                <p class="data-evento"><b>{{evento.diaInicio}}.{{evento.mesInicio}}</b> {{evento.horarioInicio}}</p>
+              </div>
+            </div>
+          </ion-content>
+       
+    </ion-modal-view>
+  </script>
+<ion-view class="explorar">
+    <ion-content style="margin: 15px;">
+        <ion-header-bar class="bar-stable barra-pesquisa">
+            <i class="ion-search icone-pesquisa"></i>
+            <input type="text" placeholder="O que você quer fazer hoje?" ng-model="textoPesquisa" style="background-color:#f8f8f8;" ng-change="explorarEventos(textoPesquisa)">
+            <button ng-if="textoPesquisa.length" class="button button-icon ion-android-close input-button pull-right"
+                ng-click="clearSearch()">
+            </button>
+        </ion-header-bar>
+   
+        <div style="display: flex;">
+            <div class="categoria-left entretenimento">
+                <img src="img/icons/entretenimento.png">
+                <div><p class="nome-categoria">Entretenimento</p></div>
+            </div>
+            <div class="categoria-right educacao">
+                <img src="img/icons/educacao.png">
+                <div><p class="nome-categoria">Educação</p></div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="categoria-left fitness">
+                <img src="img/icons/fitness.png">
+                <div><p class="nome-categoria">Fitness</p></div>
+            </div>
+            <div class="categoria-right gastronomia">
+                <img src="img/icons/gastronomia.png">
+                <div><p class="nome-categoria">Gastronomia</p></div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div class="categoria-left saude">
+                <img src="img/icons/saude.png">
+                <div><p class="nome-categoria">Saúde</p></div>
+            </div>
+            <div class="categoria-right compras">
+                <img src="img/icons/compras.png">
+                <div><p class="nome-categoria">Compras</p></div>
             </div>
         </div>
     </ion-content>

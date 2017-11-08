@@ -8,7 +8,6 @@ app.factory('loginModel', function() {
                     access_token: dadosFront.access_token,
                     name: dadosFront.name,
                     email: dadosFront.email,
-                    birthday: dadosFront.birthday,
                     picture: dadosFront.picture
                 };
             }
